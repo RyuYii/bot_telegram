@@ -19,6 +19,7 @@ def new_chat_members(update, context):
 
 def echo(update, context):
     text = update.message.text
+    print(text)
     if 'otaku' in text:
         context.bot.send_message(chat_id=update.effective_chat.id, text="Has mencionado la palabra clave.")
 
@@ -28,7 +29,8 @@ updater.dispatcher.add_handler(new_chat_members_handler)
 # Crea un comando llamado "/start"
 start_handler = CommandHandler('start', start)
 updater.dispatcher.add_handler(start_handler)
-
 echo_handler = MessageHandler(Filters.text & (~Filters.command), echo)
 updater.dispatcher.add_handler(echo_handler)
+
+print('loading...')
 updater.start_polling()
